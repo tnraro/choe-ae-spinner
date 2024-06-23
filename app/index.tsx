@@ -12,7 +12,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Spinner image={image} />
-      <Link href="/gallery">Gallery</Link>
+      <Link style={styles.galleryLink} href="/gallery">Gallery</Link>
     </View>
   );
 }
@@ -23,4 +23,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  galleryLink: {
+    position: "absolute",
+    bottom: 16,
+  }
 });
