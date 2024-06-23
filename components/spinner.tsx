@@ -1,5 +1,6 @@
+import { ImpactFeedbackStyle, impactAsync } from "expo-haptics";
 import { useEffect, useState } from "react";
-import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, Platform, Pressable, StyleSheet, View } from "react-native";
 
 interface SpinnerProps {
   image: ImageSourcePropType;
@@ -25,6 +26,7 @@ export function Spinner(props: SpinnerProps) {
       return a + t * (b - a);
     }
   });
+  useRotationFeedback(rotation);
 
   return (
     <Pressable onPress={() => {
@@ -75,4 +77,14 @@ function useAnimation(callback: (dt: number) => void) {
       isRunning = false;
     }
   }, []);
+}
+
+function useRotationFeedback(rotation: number) {
+  const rotationNumber = Math.floor(rotation / 360);
+
+  useEffect(() => {
+    if (Platform.OS === "ios") {
+      impactAsync(ImpactFeedbackStyle.Light);
+    }
+  }, [rotationNumber]);
 }
