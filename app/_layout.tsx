@@ -5,12 +5,16 @@ export default function RootLayout() {
   return (
     <StrictMode>
       <Stack>
-        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="gallery"
           options={{
             headerTitle: "Choe-ae Gallery",
-            presentation: "modal"
           }} />
       </Stack>
     </StrictMode>
